@@ -18,12 +18,21 @@ class Battle
 
   def check_winner(attacker, defender)
     if attacker.health_point==0
-      print 'Winner is ', defender.unit_name, "!\n"
+      save_winner(defender.unit_name)
+      puts "Winner is #{defender.unit_name}!"
     elsif defender.health_point==0
-      print 'Winner is ', attacker.unit_name, "!\n"
+      save_winner(attacker.unit_name)
+      puts "Winner is #{attacker.unit_name}!"
+
     else
-      print "Battle Error\n"
+      puts 'Battle Error'
     end
+  end
+
+  def save_winner(winner)
+    file = File.new("winner.txt", "w")
+      file.puts "Winner is #{winner}"
+    file.close
   end
 end
 
